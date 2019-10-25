@@ -125,8 +125,8 @@ class DataNormalizationTask(luigi.Task):
         }
 
     def run(self):
-        x_train = pd.read_csv(self.input()["x_train"])
-        x_test = pd.read_csv(self.input()["x_test"])
+        x_train = pd.read_csv(self.input()["x_train"].path)
+        x_test = pd.read_csv(self.input()["x_test"].path)
         encoder = Encoder()
         encoder.fit(x_train)
         x_train = encoder.transform(x_train)
