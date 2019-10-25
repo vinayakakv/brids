@@ -91,10 +91,10 @@ class DataSplitTask(luigi.Task):
         x_test = x.iloc[split_indices[1]]
         y_test = y.iloc[split_indices[1]]
         del x, y
-        x_train.to_csv(self.output()["x_train"], index=False)
-        x_test.to_csv(self.output()["x_test"], index=False)
-        y_train.to_csv(self.output()["y_train"], index=False)
-        y_test.to_csv(self.output()["y_test"], index=False)
+        x_train.to_csv(self.output()["x_train"].path, index=False)
+        x_test.to_csv(self.output()["x_test"].path, index=False)
+        y_train.to_csv(self.output()["y_train"].path, index=False)
+        y_test.to_csv(self.output()["y_test"].path, index=False)
 
     def output(self):
         return {
@@ -131,15 +131,15 @@ class DataNormalizationTask(luigi.Task):
         encoder.fit(x_train)
         x_train = encoder.transform(x_train)
         x_test = encoder.transform(x_test)
-        x_train.to_csv(self.output()["x_train"], index=False)
-        x_test.to_csv(self.output()["x_test"], index=False)
+        x_train.to_csv(self.output()["x_train"].path, index=False)
+        x_test.to_csv(self.output()["x_test"].path, index=False)
         if self.one_hot_encode_y:
             y_train = pd.read_csv(self.input()["y_train"])
             y_test = pd.read_csv(self.input()["y_test"])
             y_train = pd.get_dummies(y_train)
             y_test = pd.get_dummies(y_test)
-            y_train.to_csv(self.output()["y_train"], index=False)
-            y_test.to_csv(self.output()["y_test"], index=False)
+            y_train.to_csv(self.output()["y_train"].path, index=False)
+            y_test.to_csv(self.output()["y_test"].path, index=False)
         if self.visualize:
             yield DataVisualizationTask(prefix="normalized_data", dataset_location=self.output().path)
 
