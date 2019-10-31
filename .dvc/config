@@ -1,0 +1,4 @@
+['remote "local"']
+url = ../../datasets
+[core]
+remote = local
