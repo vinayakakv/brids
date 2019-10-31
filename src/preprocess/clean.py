@@ -28,4 +28,4 @@ if not dest_file.parent.exists():
     dest_file.parent.mkdir(parents=True, exist_ok=True)
 print("Writing cleaned dataset to pickle")
 df.to_pickle(dest_file)
-print("CLEANING DONE")
+print("Data Cleaning DONE")
