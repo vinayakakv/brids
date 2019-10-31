@@ -1,7 +1,6 @@
 import argparse
 import pandas as pd
 import sys
-import numpy as np
 import pathlib
 
 from sklearn.model_selection import StratifiedShuffleSplit
