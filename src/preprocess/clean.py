@@ -16,9 +16,9 @@ except Exception as e:
     sys.exit(-1)
 
 print("Start cleaning dataset")
-df = df.drop([df.columns[0], 'Timestamp'], axis=1)
 df[df.columns[17]] = df[df.columns[17]].astype('float32')
 df[df.columns[18]] = df[df.columns[18]].astype('float32')
+df = df.drop([df.columns[0], 'Timestamp'], axis=1)
 df = df.replace([np.inf, -np.inf], np.nan).fillna(-1)
 df = df[df['Flow Duration'] >= 0]
 df = df[df['Flow IAT Min'] >= 0]
