@@ -9,6 +9,7 @@ verify_ssl = true
 sklearn = "*"
 pandas = "*"
 seaborn = "*"
+joblib = "*"
 
 [requires]
 python_version = "3.7"

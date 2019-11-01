@@ -1,0 +1,20 @@
+md5: 42dcf0cb231709235239246b421ebe7d
+cmd: python src/randomforest_classifier.py --source-dir data/split --dest-file models/randomforest_classifier.pickle
+  --report-dir reports/randomforest_classifier
+wdir: ..
+deps:
+- md5: 1b87ac486466e8940b8d30a44e1eea0d.dir
+  path: data/split
+- md5: 3ee810980a0c065d3caa30a6ae3fdd30
+  path: src/randomforest_classifier.py
+outs:
+- md5: c72168a42feb93030ad10032069eafdc.dir
+  path: reports/randomforest_classifier
+  cache: true
+  metric: false
+  persist: false
+- md5: ebf646356d44dde01cf107ca13893e1c
+  path: models/randomforest_classifier.pickle
+  cache: true
+  metric: false
+  persist: false
