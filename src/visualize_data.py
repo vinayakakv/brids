@@ -2,13 +2,14 @@ import seaborn as sns
 import pandas as pd
 import argparse
 import sys
-import numpy as np
 import matplotlib.pyplot as plt
 import pathlib
 
 parser = argparse.ArgumentParser(description="Visualize the dataset as boxplot")
 parser.add_argument('--source-file', dest='source_file', help="Path to dataset")
 parser.add_argument('--dest-dir', dest='dest_dir', help="Directory to store results")
+parser.add_argument('--disable-grouping', dest='no_group', help="Disables grouping of instances based on classes",
+                    action='store_true')
 
 args = parser.parse_args()
 print("Starting Dataset Visualization")
@@ -29,9 +30,12 @@ for col in list(df)[2:]:
     print(f"Col {col}")
     try:
         plt.figure()
-        sns.boxplot(x=df[col], y=df['Label'])
+        if args.no_group:
+            sns.boxplot(x=df[col])
+        else:
+            sns.boxplot(x=df[col], y=df['Label'])
         plt.savefig(dest_dir / f"{col.replace(' ', '_').replace('/', ' per ')}_boxplot.png")
-        plt.clf()
+        plt.close()
     except Exception as e:
-        print(f"Error {e}")
+        print(f"Error {repr(e)}")
         continue
