@@ -1,0 +1,14 @@
+md5: 88a75c7eefa0cb321b997620426e54b8
+cmd: python src/preprocess/encode.py --source-dir data/split --dest-dir data/encode
+wdir: ..
+deps:
+- md5: 1b87ac486466e8940b8d30a44e1eea0d.dir
+  path: data/split
+- md5: 53803ef8ba7eced7996cc14f8e5bd678
+  path: src/preprocess/encode.py
+outs:
+- md5: e63e31f61e05a44ca5af6e60bb8354f4.dir
+  path: data/encode
+  cache: true
+  metric: false
+  persist: false
