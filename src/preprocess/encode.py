@@ -1,9 +1,10 @@
-from sklearn.preprocessing import StandardScaler
-import pandas as pd
 import argparse
-import sys
 import pathlib
+import sys
+
 import numpy as np
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
 
 
 class Encoder:

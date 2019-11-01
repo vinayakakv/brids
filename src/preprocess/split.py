@@ -1,8 +1,8 @@
 import argparse
-import pandas as pd
-import sys
 import pathlib
+import sys
 
+import pandas as pd
 from sklearn.model_selection import StratifiedShuffleSplit
 
 parser = argparse.ArgumentParser(description="Split Dataset into training and testing parts")

@@ -1,8 +1,9 @@
 import argparse
-import pandas as pd
-import sys
-import numpy as np
 import pathlib
+import sys
+
+import numpy as np
+import pandas as pd
 
 parser = argparse.ArgumentParser(description="Clean NSL-IDS 2018 Dataset")
 parser.add_argument('--source-file', dest='source_file', help="Path to original dataset")

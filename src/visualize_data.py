@@ -1,9 +1,10 @@
-import seaborn as sns
-import pandas as pd
 import argparse
-import sys
-import matplotlib.pyplot as plt
 import pathlib
+import sys
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
 
 parser = argparse.ArgumentParser(description="Visualize the dataset as boxplot")
 parser.add_argument('--source-file', dest='source_file', help="Path to dataset")
