@@ -10,6 +10,7 @@ sklearn = "*"
 pandas = "*"
 seaborn = "*"
 joblib = "*"
+tensorflow = "*"
 
 [requires]
 python_version = "3.7"

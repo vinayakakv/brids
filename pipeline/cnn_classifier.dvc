@@ -1,0 +1,20 @@
+md5: 30f1efcd8b8af443e2314106cf9fdc30
+cmd: python src/cnn_classifier.py --source-dir data/encode --dest-file models/cnn_classifier.h5
+  --report-dir reports/cnn_classifier
+wdir: ..
+deps:
+- md5: a7eccdc56874c89a138e9825fb2c6bab.dir
+  path: data/encode
+- md5: 9dd85bdb38ba91c090595e5ec94c379e
+  path: src/cnn_classifier.py
+outs:
+- md5: 5c57044f29974760d646e608c2b82e04.dir
+  path: reports/cnn_classifier
+  cache: true
+  metric: false
+  persist: false
+- md5: eae411eec1fd5b35750bbddd47c48031
+  path: models/cnn_classifier.h5
+  cache: true
+  metric: false
+  persist: false
