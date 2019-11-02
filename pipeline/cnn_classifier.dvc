@@ -1,4 +1,4 @@
-md5: 30f1efcd8b8af443e2314106cf9fdc30
+md5: 76556fc42cf5b6791b74d7ab66a34801
 cmd: python src/cnn_classifier.py --source-dir data/encode --dest-file models/cnn_classifier.h5
   --report-dir reports/cnn_classifier
 wdir: ..
