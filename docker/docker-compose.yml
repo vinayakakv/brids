@@ -1,0 +1,7 @@
+version: "3"
+services:
+  tensorflow:
+    image: vinayakakv/brids:latest
+    volumes:
+      - '$PWD/..:/root/brids'
+    tty: true
