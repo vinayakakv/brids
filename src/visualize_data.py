@@ -18,7 +18,7 @@ print("Starting Dataset Visualization")
 try:
     df = pd.read_pickle(args.source_file)
 except Exception as e:
-    print(f"Could not open {args.src_file} for reading. Error str(e)")
+    print(f"Could not open {args.source_file} for reading. Error str(e)")
     sys.exit(-1)
 
 dest_dir = pathlib.Path(args.dest_dir)

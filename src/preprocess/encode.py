@@ -33,7 +33,7 @@ class Encoder:
         dst_port_names, dst_port_values = Encoder.__to_binary('Dst Port', 16, x['Dst Port'].values)
         protocol_names, protocol_values = Encoder.__to_binary('Protocol', 8, x['Protocol'].values)
         x_t = x.drop(['Dst Port', 'Protocol'], axis=1)
-        x_t = np.log(2 + x_t.to_numpy())
+        x_t = np.log(2 + x_t.to_numpy(dtype='float32'))
         x_t = self.standard_scalar.transform(x_t)
         x_t = pd.DataFrame(x_t, columns=self.names)
         x_t[dst_port_names] = dst_port_values
