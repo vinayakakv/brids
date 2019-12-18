@@ -5,3 +5,4 @@ services:
     volumes:
       - '$PWD/..:/root/brids'
     tty: true
+    user: 1000:1000
