@@ -1,14 +1,14 @@
-md5: bcf9951e27a1a172f1103ec7204391d8
+md5: ed73aebb564fc151ca4a6e93ce2d1856
 cmd: python src/preprocess/split.py --source-file data/cleaned.pkl --dest-dir data/split
   --ratio 0.2
 wdir: ..
 deps:
 - md5: ddccf1ab3f654a8ded50176a55831d20
   path: data/cleaned.pkl
-- md5: 88d9334c25f8ef2d09fb045211afa532
+- md5: 9ec01f82439a90587e954b5cbacb525c
   path: src/preprocess/split.py
 outs:
-- md5: f7ff44450444b3cbca6e6587ccd8bbfd.dir
+- md5: 5b061e399d283ffc91db1439a0c2ce11.dir
   path: data/split
   cache: true
   metric: false

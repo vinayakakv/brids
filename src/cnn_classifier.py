@@ -18,7 +18,7 @@ class Model:
         self.conv_kernel_count = conv_kernel_count
         self.intermediate_dense_size = intermediate_dense_size
         self.input_shape = (100, 1)
-        self.output_neurons = 14
+        self.output_neurons = 15
         self.model = tf.keras.models.Sequential()
 
     def build(self):

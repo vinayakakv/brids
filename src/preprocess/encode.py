@@ -18,13 +18,13 @@ class Encoder:
     @staticmethod
     def __to_binary(name, bits, values):
         encoded_values = pd.DataFrame((((values[:, None] & (1 << np.arange(bits)))) > 0).astype(int))
-        encoded_names = [f'{name} {i}' for i in range(bits)]
+        encoded_names = [f'{name}_{i}' for i in range(bits)]
         return encoded_names, encoded_values
 
     def fit(self, x):
         x = x.drop(['Dst Port', 'Protocol'], axis=1)
         self.names = x.columns
-        x = np.log(2 + x.to_numpy())
+        x = np.log(2 + x.to_numpy(dtype='float32'), dtype='float32')
         self.standard_scalar.fit(x[:1])
         self.standard_scalar.std_ = x.std(0)
         self.standard_scalar.mean_ = x.mean(0)
@@ -54,31 +54,49 @@ if not source_dir.exists():
 
 print("Reading files")
 try:
-    x_train = pd.read_pickle(source_dir / "x_train.pickle")
-    x_test = pd.read_pickle(source_dir / "x_test.pickle")
-    y_train = pd.read_pickle(source_dir / "y_train.pickle")
-    y_test = pd.read_pickle(source_dir / "y_test.pickle")
+    train = pd.read_pickle(source_dir / "train.pickle")
+    test = pd.read_pickle(source_dir / "test.pickle")
+    # x_train = pd.read_pickle(source_dir / "x_train.pickle")
+    # x_test = pd.read_pickle(source_dir / "x_test.pickle")
+    # y_train = pd.read_pickle(source_dir / "y_train.pickle")
+    # y_test = pd.read_pickle(source_dir / "y_test.pickle")
 except Exception as e:
     print(f"Error occured while reading files {e}")
     sys.exit(-1)
 
+train_labels = train['Label']
+test_labels = test['Label']
+
+train = train.loc[:, train.columns != 'Label']
+test = test.loc[:, test.columns != 'Label']
+
 e = Encoder()
-e.fit(x_train)
+e.fit(train)
 
 dest_dir = pathlib.Path(args.dest_dir)
 if not dest_dir.exists():
     print(f"Creating directory {dest_dir}")
     dest_dir.mkdir(parents=True, exist_ok=True)
 
+train = e.transform(train)
+test = e.transform(test)
+
+# Label mapping to integers
+labels = ["Benign","Bot","Brute Force -Web","Brute Force -XSS","DDOS attack-HOIC","DDOS attack-LOIC-UDP","DDoS attacks-LOIC-HTTP","DoS attacks-GoldenEye","DoS attacks-Hulk","DoS attacks-SlowHTTPTest","DoS attacks-Slowloris","FTP-BruteForce","Infilteration","SQL Injection","SSH-Bruteforce"]
+label_map = {label: i for i, label in enumerate(labels)}
+
+train['Label'] = train_labels.map(label_map, na_action='ignore')
+test['Label'] = test_labels.map(label_map, na_action='ignore')
+
 print("Saving encoded data")
-x_train = e.transform(x_train)
-x_train.to_pickle(dest_dir / "x_train.pickle")
-x_test = e.transform(x_test)
-x_test.to_pickle(dest_dir / "x_test.pickle")
-y_train.to_pickle(dest_dir / "y_train.pickle")
-y_test.to_pickle(dest_dir / "y_test.pickle")
-y_train = pd.get_dummies(y_train)
-y_train.to_pickle(dest_dir / "y_train_onehot.pickle")
-y_test = pd.get_dummies(y_test)
-y_test.to_pickle(dest_dir / "y_test_onehot.pickle")
+train.to_csv(dest_dir / "train.csv")
+test.to_csv(dest_dir/ "test.csv")
+# x_train.to_csv(dest_dir / "x_train.csv")
+# x_test.to_csv(dest_dir / "x_test.csv")
+# y_train.to_csv(dest_dir / "y_train.csv")
+# y_test.to_csv(dest_dir / "y_test.csv")
+# y_train = pd.get_dummies(y_train)
+# y_train.to_csv(dest_dir / "y_train_onehot.csv")
+# y_test = pd.get_dummies(y_test)
+# y_test.to_csv(dest_dir / "y_test_onehot.csv")
 print("Encoding DONE")
