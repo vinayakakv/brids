@@ -1,0 +1,5 @@
+FROM nvcr.io/nvidia/tensorflow:19.12-tf2-py3
+COPY dvc_0.78.1_amd64.deb /workspace
+RUN dpkg -i /workspace/dvc_0.78.1_amd64.deb
+RUN apt update && apt install -y git
+RUN pip install sklearn pandas seaborn joblib
