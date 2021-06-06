@@ -1,5 +1,5 @@
 # BRIDS
-Border Router Intrusion Detection System. _It's not birds, btw! _
+Border Router Intrusion Detection System. _It's not birds, btw!_
 
 # What?
 An intrusion detection system using network-flow statistics collected at a border router. A minor project done for Advanced Computer Networks course at Department of IT, NITK.
