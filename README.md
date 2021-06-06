@@ -8,7 +8,7 @@ An intrusion detection system using network-flow statistics collected at a borde
 To access the performance of the 1D-CNN, and Random Forest classifier on unormalized and normalized network-flow statistics, with and without autoencoder.
 
 # Methods and Techniques
-- Used `dvc` ((Data Version Control)[https://dvc.org/] for pipeline construction)
+- Used `dvc` (https://dvc.org/) for pipeline construction)
 - Tensorflow 2 with `tf.keras` for Neural network
 - `scikit-learn` for Random Forest
 
